@@ -287,7 +287,7 @@ Contact us
 
 [1]: http://www.cocos2d-x.org "cocos2d-x"
 [2]: http://www.cocos2d-iphone.org "cocos2d for iPhone"
-[3]: http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Download
+~~[3]: http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Download~~
 [4]: http://www.cocos2d-x.org/download/version#Cocos2d-x
 [5]: http://www.box2d.org "Box2D"
 [6]: http://www.chipmunk-physics.net "Chipmunk2D"
