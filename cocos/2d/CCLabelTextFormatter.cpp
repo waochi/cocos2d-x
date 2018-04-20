@@ -90,8 +90,9 @@ int Label::getFirstWordLen(const std::u32string& utf32Text, int startIndex, int 
         char32_t character = utf32Text[index];
 
         if (character == StringUtils::UnicodeCharacters::NewLine
-            || StringUtils::isUnicodeSpace(character)
-            || StringUtils::isCJKUnicode(character))
+            || (!StringUtils::isUnicodeNonBreaking(character)
+                && (StringUtils::isUnicodeSpace(character)
+                    || StringUtils::isCJKUnicode(character))))
         {
             break;
         }
@@ -235,7 +236,10 @@ bool Label::multilineTextWrap(const std::function<int(const std::u32string&, int
                     nextLetterX += _horizontalKernings[letterIndex + 1];
                 nextLetterX += letterDef.xAdvance * _bmfontScale + _additionalKerning;
 
-                tokenRight = nextLetterX / contentScaleFactor;
+                if (tokenLen != 1 || !StringUtils::isUnicodeSpace(character))
+                {
+                    tokenRight = nextLetterX / contentScaleFactor;
+                }
             }
             nextChangeSize = true;
 
