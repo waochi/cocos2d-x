@@ -38,11 +38,11 @@
 #include "base/ccUTF8.h"
 #include "platform/CCFileUtils.h"
 #include "renderer/CCRenderer.h"
-#include "renderer/ccGLStateCache.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerCustom.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventCustom.h"
+#include "base/ccUtils.h"
 #include "2d/CCFontFNT.h"
 
 NS_CC_BEGIN
@@ -484,7 +484,7 @@ void Label::reset()
     _bmFontPath = "";
     _systemFontDirty = false;
     _systemFont = "Helvetica";
-    _systemFontSize = 12;
+    _systemFontSize = CC_DEFAULT_FONT_LABEL_SIZE;
 
     if (_horizontalKernings)
     {
@@ -1539,7 +1539,7 @@ void Label::onDraw(const Mat4& transform, bool /*transformUpdated*/)
 {
     auto glprogram = getGLProgram();
     glprogram->use();
-    GL::blendFunc(_blendFunc.src, _blendFunc.dst);
+    utils::setBlending(_blendFunc.src, _blendFunc.dst);
 
     if (_shadowEnabled)
     {
