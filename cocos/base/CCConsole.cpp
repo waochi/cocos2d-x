@@ -71,7 +71,7 @@
 #include "base/allocator/CCAllocatorDiagnostics.h"
 NS_CC_BEGIN
 
-extern const char* cocos2dVersion(void);
+extern const char* cocos2dVersion();
 
 #define PROMPT  "> "
 #define DEFAULT_COMMAND_SEPARATOR '|'
@@ -715,7 +715,7 @@ void Console::log(const char* buf)
 {
     if( _sendDebugStrings ) {
         _DebugStringsMutex.lock();
-        _DebugStrings.push_back(buf);
+        _DebugStrings.emplace_back(buf);
         _DebugStringsMutex.unlock();
     }
 }
